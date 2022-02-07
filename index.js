@@ -54,7 +54,6 @@ app.post('/sendMessage', async (req, res) => {
     </div>
     <div>
       message: ${message}
-      <div><a href='https://serivanich.github.io/portfolio'>enter this if ok<a></div>
     </div>`, // html body
   });
 
