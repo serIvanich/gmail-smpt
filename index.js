@@ -1,12 +1,7 @@
-import cors from 'cors';
-import express from 'express';
-import nodemailer from 'nodemailer';
-import bodyParser from 'body-parser';
-
-// const express = require('express');
-// const nodemailer = require('nodemailer');
-// const cors = require('cors');
-// const bodyParser = require('body-parser');
+const express = require('express');
+const nodemailer = require('nodemailer');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
 const app = express()
 app.use(cors())
