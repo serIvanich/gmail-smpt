@@ -18,30 +18,37 @@ const smpt_login = process.env.SMTP_LOGIN
 const smpt_password = process.env.SMTP_PASSWORD
 
   // create reusable transporter object using the default SMTP transport
-  let transporter = nodemailer.createTransport({
+  // let transporter = nodemailer.createTransport({
    
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    requireTSL: true,
+  //   host: "smtp.gmail.com",
+  //   port: 587,
+  //   secure: false, // true for 465, false for other ports
+  //   requireTSL: true,
+  //   auth: {
+  //     user: "test.serivan1108@gmail.com", //smpt_login, // generated ethereal user
+  //     pass: "nlcjfwnazibrmacf", //smpt_password, // generated ethereal password
+  //   },
+  // });
+
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
     auth: {
-      user: smpt_login, // generated ethereal user
-      pass: smpt_password, // generated ethereal password
+      user:  smpt_login,
+      pass: smpt_password,
     },
   });
-
 app.get('/', (req, res) => {
-  res.send('Hello Express!')
+  res.send('Hello Express!!')
 })
 
 
 app.post('/sendMessage', async (req, res) => {
-
+  
    let {name, email, phone, message} = req.body
 
-  // send mail with defined transport object
+  //send mail with defined transport object
   let info = await transporter.sendMail({
-    from: 'My Profile 👻', // sender address
+    from: 'My Profile', // sender address 👻
     to: 'serivan1108@gmail.com', // list of receivers
     subject: 'Portfolio answer', // Subject line
     //text: "Hello world?", // plain text body
@@ -55,6 +62,12 @@ app.post('/sendMessage', async (req, res) => {
     <div>
       message: ${message}
     </div>`, // html body
+  }, function(err, info) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(info);
+    }
   });
 
   res.send('ok');
